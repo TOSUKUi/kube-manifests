@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: communitization-bot-deployment
+  labels:
+    app: communitization-bot
+
+spec:
+  selector:
+    matchLabels:
+      app: bot
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: bot
+    spec:
+      containers:
+      - name: bot
+        image: ghcr.io/tosukui/communitization-bot:ci-cd-settings
+        env:
+        - name: OPENAI_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: openai-api-key
+              key: openai-api-key
+
+        - name: DISCORD_BOT_TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: discord-bot-info
+              key: discord-bot-token
