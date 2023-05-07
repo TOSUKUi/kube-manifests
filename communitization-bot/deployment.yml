@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: bot
-        image: ghcr.io/tosukui/communitization-bot:ci-cd-settings
+        image: ghcr.io/tosukui/communitization-bot:master
         env:
         - name: OPENAI_API_KEY
           valueFrom:
