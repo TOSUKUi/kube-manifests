@@ -25,7 +25,6 @@ spec:
   - "nginx.tosukui.xyz"
   gateways:
   - nginx-gateway
-  - mesh
   http:
   - route:
     - destination:

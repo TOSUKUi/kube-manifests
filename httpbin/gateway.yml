@@ -7,11 +7,14 @@ spec:
     istio: ingressgateway
   servers:
   - port:
-      number: 80
-      name: http
-      protocol: HTTP
+      number: 443
+      name: https
+      protocol: HTTPS
+    tls:
+      mode: SIMPLE
+      credentialName: letsencrypt-staging # This should match the Certificate secretName
     hosts:
-    - "httpbin.vurivari.tsk.gg"
+    - "httpbin.tosukui.xyz"
 ---
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
@@ -19,10 +22,9 @@ metadata:
   name: httpbin
 spec:
   hosts:
-  - "httpbin.vurivari.tsk.gg"
+  - "httpbin.tosukui.xyz"
   gateways:
   - httpbin-gateway
-  - mesh
   http:
   - route:
     - destination:
