@@ -12,7 +12,7 @@ spec:
       protocol: HTTPS
     tls:
       mode: SIMPLE
-      credentialName: letsencrypt-staging # This should match the Certificate secretName
+      credentialName: letsencrypt-production # This should match the Certificate secretName
     hosts:
     - "httpbin.tosukui.xyz"
 ---

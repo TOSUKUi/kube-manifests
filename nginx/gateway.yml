@@ -14,7 +14,7 @@ spec:
     - "nginx.tosukui.xyz"
     tls:
       mode: SIMPLE
-      credentialName: letsencrypt-staging # This should match the Certificate secretName
+      credentialName: letsencrypt-production # This should match the Certificate secretName
 ---
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService

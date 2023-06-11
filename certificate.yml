@@ -1,13 +1,13 @@
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: letsencrypt-staging
+  name: letsencrypt-production
+  namespace: istio-system
 spec:
-  secretName: letsencrypt-staging
+  secretName: letsencrypt-production
   issuerRef:
-    name: letsencrypt-staging
+    name: letsencrypt-production
     kind: ClusterIssuer
   commonName: "*.tosukui.xyz"
   dnsNames:
-  - tosukui.xyz
   - "*.tosukui.xyz"
