@@ -7,14 +7,20 @@ spec:
     istio: ingressgateway
   servers:
   - port:
+      number: 80
+      name: http
+      protocol: HTTP
+    hosts:
+    - "nginx.tosukui.xyz"
+  - port:
       number: 443
       name: https
       protocol: HTTPS
-    hosts:
-    - "nginx.tosukui.xyz"
     tls:
       mode: SIMPLE
       credentialName: letsencrypt-production # This should match the Certificate secretName
+    hosts:
+    - "nginx.tosukui.xyz"
 ---
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
@@ -30,4 +36,4 @@ spec:
     - destination:
         host: nginx
         port:
-          number: 8000
+          number: 8080
