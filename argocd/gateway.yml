@@ -1,0 +1,54 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: argocd-server-gateway
+  namespace: argocd
+spec:
+  selector:
+    istio: ingressgateway
+  servers:
+  - hosts:
+      - argocd-server.tosukui.xyz
+    port:
+      name: http
+      number: 80
+      protocol: HTTP
+    tls:
+      httpsRedirect: true
+  - port:
+      number: 443
+      name: https
+      protocol: HTTPS
+    tls:
+      mode: SIMPLE
+      credentialName: letsencrypt-production # This should match the Certificate secretName
+    hosts:
+      - "argocd-server.tosukui.xyz"
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: argocd-vsvc
+  namespace: argocd
+spec:
+  hosts:
+    - "argocd-server.tosukui.xyz"
+  gateways:
+    - argocd-server-gateway
+  http:
+    - name: grpc
+      match:
+      - headers:
+          user-agent:
+            prefix: argocd-client
+      route:
+      - destination:
+          host: argocd-server
+          port:
+            number: 443
+    - name: http
+      route:
+      - destination:
+          host: argocd-server
+          port:
+            number: 80
