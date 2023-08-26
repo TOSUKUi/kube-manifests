@@ -21,7 +21,7 @@ spec:
       protocol: HTTPS
     tls:
       mode: SIMPLE
-      credentialName: letsencrypt-production # This should match the Certificate secretName
+      credentialName: oreore-tosukuixyz-credential # This should match the Certificate secretName
     hosts:
       - "argocd-server.tosukui.xyz"
 ---
