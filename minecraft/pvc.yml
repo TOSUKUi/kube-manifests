@@ -6,5 +6,3 @@ metadata:
 spec:
   storageClassName: "" # Empty string must be explicitly set otherwise default StorageClass will be set
   volumeName: nfs-pv
-  capacity:
-    storage: 100Gi
