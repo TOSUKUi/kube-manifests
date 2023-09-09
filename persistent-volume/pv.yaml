@@ -4,9 +4,9 @@ metadata:
   name: nfs-pv
 spec:
   capacity:
-    storage: 300Gi
+    storage: 100Gi
   accessModes:
     - ReadWriteMany
   nfs:
-    server: 192.168.5.11
+    server: 192.168.5.10
     path: /var/nfs/kube
