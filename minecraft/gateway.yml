@@ -1,0 +1,32 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: minecraft-gateway
+spec:
+  selector:
+    istio: ingressgateway
+  servers:
+  - port:
+      number: 25566
+      name: tcp
+      protocol: TCP
+    hosts:
+    - "*"
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: minecraft
+spec:
+  hosts:
+  - "*"
+  gateways:
+  - minecraft-gateway
+  tcp:
+  - match:
+    - port: 25566
+    route:
+    - destination:
+        host: minecraft
+        port:
+          number: 25565
