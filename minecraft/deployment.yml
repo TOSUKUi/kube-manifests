@@ -30,7 +30,7 @@ spec:
         - name: DIFFICULTY
           value: "normal"
         - name: ICON
-          value: "https://d.kuku.lu/8wd5t7334"
+          value: "https://file15-d-cdn.thxmail.net/files/20230910-1632_c7a77b96c20cc67cc48f472c6fca8230.png"
         volumeMounts:
         - mountPath: "/data"
           name: world
