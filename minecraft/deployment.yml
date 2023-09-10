@@ -23,6 +23,14 @@ spec:
         env:
         - name: EULA
           value: "TRUE"
+        - name: INIT_MEMORY
+          value: "1G"
+        - name: MAX_MEMORY
+          value: "4G"
+        - name: DIFFICULTY
+          value: "normal"
+        - name: ICON
+          value: "https://d.kuku.lu/8wd5t7334"
         volumeMounts:
         - mountPath: "/data"
           name: world
