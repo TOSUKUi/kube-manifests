@@ -15,6 +15,12 @@ spec:
       credentialName: letsencrypt-production # This should match the Certificate secretName
     hosts:
     - "httpbin.tosukui.xyz"
+  - port:
+      number: 80
+      name: http
+      protocol: HTTP
+    hosts:
+    - "httpbin.tosukui.xyz"
 ---
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService

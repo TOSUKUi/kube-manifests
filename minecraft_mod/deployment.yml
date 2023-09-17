@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: minecraft-mod
+  namespace: minecraft-mod
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: minecraft-mod
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: minecraft-mod
+        version: v1
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: memory
+                operator: In
+                values:
+                - high
+      serviceAccountName: minecraft-mod
+      containers:
+      - image: itzg/minecraft-server:java8-jdk
+        name: minecraft-mod
+        ports:
+        - containerPort: 25565
+        - containerPort: 8080
+        env:
+        - name: EULA
+          value: "TRUE"
+        - name: INIT_MEMORY
+          value: "1G"
+        - name: MAX_MEMORY
+          value: "16G"
+        - name: DIFFICULTY
+          value: "normal"
+        - name: VERSION
+          value: '1.7.10'
+        - name: TYPE
+          value: FORGE
+        - name: FORGE_VERSIOn
+          value: "10.13.4.161"
+        - name: JVM_OPTS
+          value: "-XX:+UseG1GC -XX:+UseFastAccessorMethods -XX:+OptimizeStringConcat -XX:MetaspaceSize=1024m -XX:MaxMetaspaceSize=2048m -XX:+AggressiveOpts -XX:MaxGCPauseMillis=10 -XX:+UseStringDeduplication  -XX:hashCode=5 -Dfile.encoding=UTF-8"
+        volumeMounts:
+        - mountPath: "/data"
+          name: world
+      volumes:
+      - name: world
+        persistentVolumeClaim:
+          claimName: minecraft-mod-pvc
