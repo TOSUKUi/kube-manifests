@@ -18,9 +18,6 @@ spec:
       containers:
       - image: itzg/minecraft-server
         name: minecraft
-        resources:
-          limits:
-            memory: "16Gi"
         ports:
         - containerPort: 25565
         env:
@@ -29,7 +26,7 @@ spec:
         - name: INIT_MEMORY
           value: "1G"
         - name: MAX_MEMORY
-          value: "15G"
+          value: "4G"
         - name: DIFFICULTY
           value: "normal"
         volumeMounts:
