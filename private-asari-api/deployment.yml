@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: asari-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: asari-api
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: asari-api
+        version: v1
+    spec:
+      serviceAccountName: asari-api
+      containers:
+      - image: ghcr.io/tosukui/asari-api:main
+        name: asari-api
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8000
