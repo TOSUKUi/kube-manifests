@@ -1,18 +1,17 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: httpbin-ingress
-  namespace: httpbin
+  name: ingress-httpbin
 spec:
-  ingressClassName: nginx
   rules:
-    - host: httpbin.tosukui.xyz
-      http:
-        paths:
-        - backend:
-            service:
-              name: httpbin
-              port:
-                number: 8000
-          path: /
-          pathType: Prefix
+  - host: httpbin.tosukui.xyz
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: httpbin
+            port:
+              number: 80
+  ingressClassName: nginx
