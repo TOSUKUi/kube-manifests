@@ -10,7 +10,6 @@ spec:
   selector:
     matchLabels:
       app: bot
-  replicas: 0
   template:
     metadata:
       labels:
