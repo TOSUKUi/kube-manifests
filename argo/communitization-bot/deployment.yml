@@ -24,10 +24,10 @@ spec:
           valueFrom:
             secretKeyRef:
               name: openai-api-key
-              key: openai-api-key
+              key: api-key
 
         - name: DISCORD_BOT_TOKEN
           valueFrom:
             secretKeyRef:
               name: discord-bot-info
-              key: discord-bot-token
+              key: token
