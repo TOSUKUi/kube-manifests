@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mariadb
+spec:
+  replicas: 1
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: kubernetes.io/hostname
+            operator: In
+            values:
+            - worker1
+  selector:
+    matchLabels:
+      app: mariadb
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: mariadb
+        version: v1
+    spec:
+      serviceAccountName: nginx
+      containers:
+      - image: mariadb
+        imagePullPolicy: IfNotPresent
+        tag: 10.11.7
+        name: mariadb
+        ports:
+        - containerPort: 3306
+        env:
+        - name: MARIADB_ROOT_PASSWORD
+          value: "TRUE"
+        volumeMounts:
+        - mountPath: "/var/lib/mysql"
+          valueFrom:
+            secretKeyRef:
+              name: mariadb
+              key: root_password
+      volumes:
+      - name: mariadb
+        persistentVolumeClaim:
+          claimName: mariadb-pvc
+
