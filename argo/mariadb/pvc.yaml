@@ -8,5 +8,5 @@ spec:
   resources:
     requests:
       storage: 1000Gi
-  storageClassName: standard
+  storageClassName: local-storage
   volumeName: mariadb-pv
