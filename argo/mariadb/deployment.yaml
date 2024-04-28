@@ -4,15 +4,6 @@ metadata:
   name: mariadb
 spec:
   replicas: 1
-  affinity:
-    nodeAffinity:
-      requiredDuringSchedulingIgnoredDuringExecution:
-        nodeSelectorTerms:
-        - matchExpressions:
-          - key: kubernetes.io/hostname
-            operator: In
-            values:
-            - worker1
   selector:
     matchLabels:
       app: mariadb
@@ -23,6 +14,16 @@ spec:
         app: mariadb
         version: v1
     spec:
+      affinity:
+        podAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+            - matchExpressions:
+              - key: disk
+                operator: In
+                values:
+                - big
+            topologyKey: "kubernetes.io/hostname"
       serviceAccountName: nginx
       containers:
       - image: mariadb
