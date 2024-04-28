@@ -18,13 +18,13 @@ spec:
         podAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
           - labelSelector:
-            - matchExpressions:
+              matchExpressions:
               - key: disk
                 operator: In
                 values:
                 - big
             topologyKey: "kubernetes.io/hostname"
-      serviceAccountName: nginx
+      serviceAccountName: mariadb
       containers:
       - image: mariadb
         imagePullPolicy: IfNotPresent
