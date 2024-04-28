@@ -17,13 +17,12 @@ spec:
       affinity:
         podAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
-          - labelSelector:
-              matchExpressions:
+            nodeSelectorTerms:
+            - matchExpressions:
               - key: disk
                 operator: In
                 values:
                 - big
-            topologyKey: "kubernetes.io/hostname"
       serviceAccountName: mariadb
       containers:
       - image: mariadb
