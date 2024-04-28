@@ -34,13 +34,13 @@ spec:
         - containerPort: 3306
         env:
         - name: MARIADB_ROOT_PASSWORD
-          value: "TRUE"
-        volumeMounts:
-        - mountPath: "/var/lib/mysql"
           valueFrom:
             secretKeyRef:
               name: mariadb
               key: root_password
+        volumeMounts:
+        - mountPath: "/var/lib/mysql"
+          name: mariadb
       volumes:
       - name: mariadb
         persistentVolumeClaim:
