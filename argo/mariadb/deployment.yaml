@@ -25,9 +25,8 @@ spec:
                 - big
       serviceAccountName: mariadb
       containers:
-      - image: mariadb
+      - image: mariadb:10.11.7
         imagePullPolicy: IfNotPresent
-        tag: 10.11.7
         name: mariadb
         ports:
         - containerPort: 3306
