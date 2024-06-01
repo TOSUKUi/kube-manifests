@@ -25,7 +25,7 @@ spec:
                 - big
       serviceAccountName: open-webui
       containers:
-      - image: open-webui:latest
+      - image: ghcr.io/open-webui/open-webui:main
         imagePullPolicy: IfNotPresent
         name: open-webui
         ports:
