@@ -29,7 +29,7 @@ spec:
         imagePullPolicy: IfNotPresent
         name: open-webui
         ports:
-        - containerPort: 3000
+        - containerPort: 8080
         volumeMounts:
         - mountPath: "/var/lib/mysql"
           name: open-webui
